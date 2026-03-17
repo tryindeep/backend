@@ -94,9 +94,39 @@ const videoRecordThree = new Promise ((resolve , reject) => {
 //         console.log(massage);
 //     })
 // who complete first that will print
-Promise.race([
-    videoRecordOne, 
-    videoRecordTwo, 
-    videoRecordThree]).then((massage) => {
-        console.log(massage);
-    })
+// Promise.race([
+//     videoRecordOne, 
+//     videoRecordTwo, 
+//     videoRecordThree]).then((massage) => {
+//         console.log(massage);
+//     })
+
+// Promises by Harkirat 
+
+function callback(){
+    console.log("completed after 3 sec");
+    
+}
+setTimeoutPromisified
+function setTimeoutPromisified (ms) {
+    return new Promise ((resolve) => setTimeout(resolve , ms))
+}
+
+console.log(setTimeoutPromisified(3000).then(callback));
+
+// setTimeout call back 
+
+function logging(){
+ console.log("Done!");
+ 
+}
+function waitfor5Sec(ms){
+    setTimeout(logging ,ms)
+}
+
+waitfor5Sec(5000);
+
+
+
+
+
