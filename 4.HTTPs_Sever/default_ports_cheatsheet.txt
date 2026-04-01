@@ -1,0 +1,78 @@
+DEFAULT PORTS CHEAT SHEET
+
+Well-Known Ports (0–1023)
+20   TCP   FTP (Data)
+21   TCP   FTP (Control)
+22   TCP   SSH
+23   TCP   Telnet
+25   TCP   SMTP
+53   TCP/UDP DNS
+67   UDP   DHCP (Server)
+68   UDP   DHCP (Client)
+69   UDP   TFTP
+80   TCP   HTTP
+110  TCP   POP3
+119  TCP   NNTP
+123  UDP   NTP
+137  UDP   NetBIOS Name
+138  UDP   NetBIOS Datagram
+139  TCP   NetBIOS Session
+143  TCP   IMAP
+161  UDP   SNMP
+162  UDP   SNMP Trap
+179  TCP   BGP
+194  TCP   IRC
+443  TCP   HTTPS
+445  TCP   SMB
+465  TCP   SMTPS
+500  UDP   ISAKMP/IPsec
+514  UDP   Syslog
+515  TCP   LPD
+520  UDP   RIP
+587  TCP   SMTP (Submission)
+636  TCP   LDAPS
+989  TCP   FTPS (Data)
+990  TCP   FTPS (Control)
+993  TCP   IMAPS
+995  TCP   POP3S
+
+Registered Ports (Common)
+1433  Microsoft SQL Server
+1521  Oracle DB
+2049  NFS
+2082  cPanel
+2083  cPanel SSL
+2181  ZooKeeper
+2222  Alternative SSH
+2375  Docker
+3000  Dev Server (React)
+3306  MySQL
+3389  RDP
+4000  Dev Server
+5000  Flask / Backend
+5432  PostgreSQL
+5601  Kibana
+5672  RabbitMQ
+5900  VNC
+5985  WinRM
+5986  WinRM HTTPS
+6000  X11
+6379  Redis
+6443  Kubernetes API
+7001  WebLogic
+7077  Spark
+7474  Neo4j
+7687  Neo4j Bolt
+8000  HTTP Alt
+8080  HTTP Alt
+8443  HTTPS Alt
+8888  Jupyter Notebook
+9000  SonarQube
+9042  Cassandra
+9090  Prometheus
+9092  Kafka
+9200  Elasticsearch
+9418  Git
+
+Dynamic Ports
+49152–65535  (Temporary / Private Ports)
