@@ -1,0 +1,20 @@
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+  <script>
+    async function sendRequest() {
+      const response = await axios.post("http://localhost:3001/sum", {
+        a: document.getElementById("a").value,
+        b: document.getElementById("b").value
+      });
+      console.log(response.data);
+    }
+    // npx serve - > serve a folder over http ...
+  </script>
+</head>
+
+<body>
+  <input id="a" type="text" placeholder="First Value" />
+  <input id="b" type="text" placeholder="Second Value" />
+
+  <button onclick="sendRequest()">Sum</button>
+</body>
