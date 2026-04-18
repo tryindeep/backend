@@ -3,7 +3,7 @@ const jwtPassword = "secret";
 const zod = require("zod");
 
 const emailSchema = zod.string().email();
-const passwordSchema = zod.string().min(6);
+const passwordSchema = zod.string().min(4);
 
 function signJwt(username, password) {
     const usernameResponse = emailSchema.safeParse(username);

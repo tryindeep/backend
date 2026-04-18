@@ -1,0 +1,1 @@
+mongodb+srv://iamtridip06_db_user:XM6O9a7TvtkShxdk@cluster0.m5z7gpt.mongodb.net/
