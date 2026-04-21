@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const {JWT_USER_SECRET} = require("../config/config.js")
 
 
-function userMiddileware (req, res, next) {
-    const token = $ZodCheckSizeEquals.headers.token;
+function userMiddleware (req, res, next) {
+    const token = req.headers.token;
     const verifiedUser = jwt.verify(token , JWT_USER_SECRET);
     if(verifiedUser){
         req.userId = verifiedUser.id;
@@ -16,5 +16,5 @@ function userMiddileware (req, res, next) {
 }
 
 module.exports = {
-    userMiddileware : userMiddileware
+    userMiddleware : userMiddleware
 }

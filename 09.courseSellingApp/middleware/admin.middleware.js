@@ -4,8 +4,8 @@ const {JWT_ADMIN_SECRET} = require("../config/config.js")
 
 
 function adminMiddileware (req, res, next) {
-    const token = $ZodCheckSizeEquals.headers.token;
-    const verifiedUser = jwt.verify(token , JWT_USER_SECRET);
+    const token = req .headers.token;
+    const verifiedUser = jwt.verify(token , JWT_ADMIN_SECRET);
     if(verifiedUser){
         req.userId = verifiedUser.id;
         next();

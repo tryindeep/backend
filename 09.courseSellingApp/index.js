@@ -1,3 +1,6 @@
+require('dotenv').config();
+console.log(process.env.MONGO_URL);
+
 const express =  require("express");
 const  mongoose  = require("mongoose");
 const app = express();
@@ -5,9 +8,9 @@ app.use(express.json());
 
 // Routing in express , the express Router 
 //Routers
-const {userRouter} = require ("./routes/user.js");
-const {courseRouter} = require("./routes/course.js");
-const {adminRouter} = require("./routes/admin.js");
+const {userRouter} = require ("./routes/user.router.js");
+const {courseRouter} = require("./routes/course.router.js");
+const {adminRouter} = require("./routes/admin.router.js");
 
 // learn Passport Auth
 
@@ -20,7 +23,7 @@ app.use('/api/v1/admin' , adminRouter);
 
 
 async function main() {
-    await mongoose.connect("mongodb+srv://iamtridip06_db_user:XM6O9a7TvtkShxdk@cluster0.m5z7gpt.mongodb.net/course-Selling-App")
+    await mongoose.connect(process.env.MONGO_URL)
     app.listen(3000);
     console.log("listing on Port 3000")
 }
