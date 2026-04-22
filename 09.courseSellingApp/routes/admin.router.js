@@ -120,7 +120,7 @@ adminRouter.put("/course", adminMiddileware, async(req, res) => {
     imageUrl: imageUrl,
   });
   res.json({
-    message: "Course Udated",
+    message: "Course Updated",
     courseId: course._id,
   });
 });
