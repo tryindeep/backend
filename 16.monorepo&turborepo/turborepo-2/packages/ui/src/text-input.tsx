@@ -2,7 +2,6 @@
 interface PropType {
     placeholder : string;
     size: "big" | "small";
-    
 
 }
   

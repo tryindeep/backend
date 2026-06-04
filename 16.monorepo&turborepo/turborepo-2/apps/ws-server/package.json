@@ -10,7 +10,9 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@types/express": "^5.0.6",
     "@types/ws": "^8.18.1",
+    "express": "^5.2.1",
     "ws": "^8.21.0"
   }
 }
