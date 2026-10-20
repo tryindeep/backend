@@ -18,7 +18,7 @@ class Rectangle{
     }
 }
 
-const rect = new Rectangle (2,4,"red");
+const rect = new Rectangle (2,4,"red"); // instance 
 const area = rect.area();
 console.log(area);
 

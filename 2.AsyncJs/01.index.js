@@ -16,7 +16,7 @@ fs.readFile("a.txt" , "utf-8", (err ,data ) => {
 });
 
 // // synchronusly
-// fs.readFileSync("b.txt" , "utf-8", read); 
+fs.readFileSync("b.txt" , "utf-8", read); 
 console.log("Done !");
 
 

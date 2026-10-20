@@ -1,2 +1,9 @@
-Hello Tridip!
-How are you ?
+[   
+    {
+		"path": "./code/package.json",
+		"contents": "{name: 'code-project'}"
+	}, {
+		"path": "./code/index.js",
+		"contents": "console.log('hi there')"
+    }
+]

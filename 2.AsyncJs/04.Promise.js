@@ -1,4 +1,4 @@
-// ==========Promises==========
+// ===================================Promises==========================================
 
 let p = new Promise ((resolve , reject) => {
     let a = 1+2;
@@ -10,16 +10,16 @@ let p = new Promise ((resolve , reject) => {
 })
 
 p.then((massage) => {
-    console.log("This is in the then " + massage);
+    console.log("This is in the then " + massage); // This is resolve function
 }).catch((massage) => {
-    console.log("This is in the catch " + massage);
+    console.log("This is in the catch " + massage); // This is Reject function 
 })
 
 // --------------Callback and why promises are better than callbacks -----------
 
 // USING_CALLBACK
-let userLeft = false;
-let userWatchingCatMeme  = true;
+let userLeft = false; // change to check the outputs 
+let userWatchingCatMeme  = false; // change to check the outputs 
 
 function userWatchingCallbackTutorial (callback, errorCallback) {
     if(userLeft){
@@ -30,7 +30,7 @@ function userWatchingCallbackTutorial (callback, errorCallback) {
     }else if (userWatchingCatMeme){
         errorCallback({
             why : " User watching cat meme",
-            massage :  "cat > tryIndeep"
+            massage :  ":)"
         })
     }else{
         callback("Learned callbacks")
@@ -60,7 +60,7 @@ function userWatchingCallbackPromise () {
     }else if (userWatchingCatMeme1){
         reject({
             why : " User watching cat meme",
-            massage :  "cat > tryIndeep"
+            massage :  ":)"
         })
     }else{
         resolve("Learned callbacks")
@@ -69,13 +69,15 @@ function userWatchingCallbackPromise () {
 
 }
 
-userWatchingCallbackPromise().then((massage) => {
-    console.log("Success : " + massage);
-}).catch((error) => {
-    console.log(error.why+ " " + error.massage);
-});
+userWatchingCallbackPromise()
+    .then((massage) => {
+        console.log("Success : " + massage);
+    })
+    .catch((error) => {
+        console.log(error.why+ " " + error.massage);
+    });
 
-// Promises Method!
+// =======================Promises Method!========================
 
 const videoRecordOne = new Promise ((resolve , reject) => {
     resolve("video 1 recorded")
@@ -87,13 +89,15 @@ const videoRecordThree = new Promise ((resolve , reject) => {
     resolve("video 3 recorded")
 });
 
+// use this once 
 Promise.all([
     videoRecordOne,
     videoRecordTwo,
     videoRecordThree]).then((massage) => {
         console.log(massage);
     })
-who complete first that will print
+// use this once 
+// who complete first that will print
 Promise.race([
     videoRecordOne,
     videoRecordTwo,
@@ -101,20 +105,10 @@ Promise.race([
         console.log(massage);
     })
 
-// Promises by Harkirat
-// setTimeoutPromisified
+// ===========================Promises by Harkirat=============================
 
-function callback(){
-    console.log("completed after 3 sec");
 
-}
-function setTimeoutPromisified (ms) {
-    return new Promise ((resolve) => setTimeout(resolve , ms))
-}
-console.log(setTimeoutPromisified(3000).then(callback));
-
-// setTimeout call back
-
+// ========setTimeout call back==============
 function logging(){
  console.log("Done!");
 
@@ -125,35 +119,37 @@ function waitfor5Sec(ms){
 
 waitfor5Sec(5000);
 
-//---------------- simpler way to promise -------------------
+// ============ setTimeoutPromisified====================
+function callback(){
+    console.log("completed after 3 sec");
 
-function random(resolve) {
-  resolve();
 }
-let p = new Promise(random); // supposed to something return you in eventually   for  asynchronus
-
-//using the eventual value return by the promise
-function callback() {
-  console.log("My name is Tridip Pramanick");
+function setTimeoutPromisified (ms) {
+    return new Promise ((resolve) => setTimeout(resolve , ms))
 }
-p.then(callback);
+console.log(setTimeoutPromisified(3000)
+    .then(callback));
 
-const { log } = require("console");
-// -------------------Create you own promise class --------------------------------
+// //---------------- simpler way to promise -------------------
 
-class TryInDeepPromise (resolve , reject){
-    function resolve(resolve){
 
-    }
-    function reject(resolve){
 
-    }
-}
+// // -------------------Create you own promise class --------------------------------
 
-/// write a promisified version of fs.readFile , writeFile and
+// // class TryInDeepPromise (resolve , reject){
+// //     function resolve(resolve){
+
+// //     }
+// //     function reject(resolve){
+
+// //     }
+// // }
+
+
+
+// /// write a promisified version of fs.readFile , writeFile and
 
 const fs = require("fs");
-
 
 function readFilePromisified(fileName) {
   return new Promise((resolve, reject) => {
@@ -167,9 +163,10 @@ function readFilePromisified(fileName) {
   });
 }
 
-readFilePromisified("a.txt").then((data) => {
-    console.log("text : " + data);
-    
-}).catch((err) => {
-            console.log("Error : " +err);
-        })
+readFilePromisified("a.txt")
+    .then((data) => {
+        console.log("text : " + data);
+    })
+    .catch((err) => {
+        console.log("Error : " +err);
+    })

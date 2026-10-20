@@ -1,1 +1,2 @@
-hi there from b.txt
+HELLO TRIDIP!
+HOW ARE YOU ?
