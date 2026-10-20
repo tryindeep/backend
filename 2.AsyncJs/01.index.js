@@ -1,37 +1,52 @@
-// const { log } = require("console");
-// const fs = require ("fs");
+
+const fs = require ("fs");
+
+// // async function 
+fs.readFile("a.txt" , "utf-8", read );
+function read(err , data){
+    console.log(data);
+}
+// or 
+fs.readFile("a.txt" , "utf-8", (err ,data ) => {
+    if(err){
+        console.log(err);
+    }else{
+        console.log(data);
+    }
+});
+
+// // synchronusly
+// fs.readFileSync("b.txt" , "utf-8", read); 
+console.log("Done !");
 
 
-// // function read(err , data){
-// //     console.log(data);
-// // }
+// ============================================================
 
-// // fs.readFile("a.txt" , "utf-8", read );  // async function 
-// // fs.readFileSync("b.txt" , "utf-8", read); // synchronusly
+// Q1 . what will be the order of printing the ouput ?
+function timeout() {
+  console.log("Done from Timeout");
+}
 
-// // console.log("Done !");
+console.log("Hi ");
 
+setTimeout(timeout, 1000);
 
-// function timeout() {
-//   console.log("Done from Timeout");
-// }
+console.log("Welcome to loupe");
 
-// console.log("Hi ");
+let c;
+for (let i = 0; i <= 10000000000; i++) {
+  c++;
+}
 
-// setTimeout(timeout, 1000);
+console.log("Expensive Operation Done");
 
-// console.log("Welcome to loupe");
-
-// let c;
-// for (let i = 0; i <= 10000000000; i++) {
-//   c++;
-// }
-
-// console.log("Expensive Operation Done");
 //check here for visulization : How JS executes asynchronous code - http://latentflip.com/loupe/ 
 
 
-//  setTimeoutSync
+
+//==============================================================================
+
+// So we have created  setTimeoutSynchronusly (setTimeoutSync) 
 
 function setTimeoutSync (timeout){
     let startTime = new Date();
