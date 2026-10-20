@@ -45,8 +45,7 @@ userWatchingCallbackTutorial((massage) => {
 });
 
 // why promises are better than callbacks  version with same example?
-// [Callback hell], or the "pyramid of doom," is a JavaScript programming issue caused
-//by excessively nesting multiple asynchronous callbacks, making code unreadable, hard to maintain, and difficult to debug.
+
 
 let userLeft1 = true;
 let userWatchingCatMeme1  = false;
@@ -107,47 +106,80 @@ Promise.race([
 
 // ===========================Promises by Harkirat=============================
 
+// promisified readfile Fucntion 
+const fs = require("fs/promises")
+fs.readFile("a.txt" , "utf-8");
 
-// ========setTimeout call back==============
-function logging(){
- console.log("Done!");
+// what returns 
 
-}
-function waitfor5Sec(ms){
-    setTimeout(logging ,ms)
-}
-
-waitfor5Sec(5000);
-
-// ============ setTimeoutPromisified====================
-function callback(){
-    console.log("completed after 3 sec");
-
-}
-function setTimeoutPromisified (ms) {
-    return new Promise ((resolve) => setTimeout(resolve , ms))
-}
-console.log(setTimeoutPromisified(3000)
-    .then(callback));
-
-// //---------------- simpler way to promise -------------------
+fs.readFile("a.txt" , "utf-8")
+    .then((data) => {
+        console.log(data);
+    })
+    .catch((err) => {
+        console.log(err); 
+    })
 
 
+// [Callback hell], or the "pyramid of doom," is a JavaScript programming issue caused
+//by excessively nesting multiple asynchronous callbacks, making code unreadable, hard to maintain, and difficult to debug.
 
-// // -------------------Create you own promise class --------------------------------
+// callback hell 
+fs.readFile("a.txt", "utf-8", (err, a) => {
+    if (err) return console.log(err);
 
-// // class TryInDeepPromise (resolve , reject){
-// //     function resolve(resolve){
+    fs.writeFile("b.txt", a.toUpperCase(), (err) => {
+        if (err) return console.log(err);
 
-// //     }
-// //     function reject(resolve){
+        fs.readFile("b.txt", "utf-8", (err, b) => {
+            if (err) return console.log(err);
 
-// //     }
-// // }
+            console.log(b);
+        });
+    });
+});
+
+// Question : write logic to read a file  (a.txt), and then write its content to b.txt
 
 
+fs.readFile("a.txt" , "utf-8")
+    .then(data => {
+        fs.writeFile("b.txt", data.toUpperCase())
+            .then(() => {
+                console.log("done");
+                fs.readFile("c.txt" , "utf-8")
+                    .then(data => {
+                        console.log(data);
+                    })
+            })
+    })
 
-// /// write a promisified version of fs.readFile , writeFile and
+// but it look like callbackhell right ?
+//So , 
+fs.readFile("a.txt" , "utf-8")
+    .then(data => {
+        return fs.writeFile("b.txt", data.toUpperCase())
+    })
+    .then(() => {
+        console.log("done");
+        return fs.readFile("c.txt" , "utf-8")
+    })
+    .then(data => {
+        console.log(data);
+    })
+
+// IF YOU DON'T WANT TO WRITE (return & {}) then , do this 
+
+fs.readFile("a.txt" , "utf-8")
+    .then(data => fs.writeFile("b.txt", data.toUpperCase()))
+    .then(() => fs.readFile("c.txt" , "utf-8"))
+    .then(data => {
+        console.log(data);
+    })
+
+// right now we get rid of callback hell 
+
+//===================write a promisified version of fs.readFile  by own =======================
 
 const fs = require("fs");
 
@@ -170,3 +202,59 @@ readFilePromisified("a.txt")
     .catch((err) => {
         console.log("Error : " +err);
     })
+
+//===================write a promisified version of setTimeout by own =======================
+
+function setTimeoutPromisified(duration){
+    return new Promise((resolve , reject) => {
+        setTimeout(()=> {
+            resolve();
+        },duration)
+    })
+}
+// or
+function setTimeoutPromisified(duration){
+    return new Promise((resolve , reject) => {
+        setTimeout(resolve,duration)
+    })
+}
+
+setTimeoutPromisified(5000)
+    then(() => {
+        console.log("hi there");
+        
+    })
+    .catch(() => {
+        console.log("error");
+        
+    })
+
+
+// Predict the output 
+console.log("1");
+
+setTimeout(() => console.log("2") ,0)
+
+Promise.resolve().then(() => console.log("3")) // immediate resolves
+
+console.log("4");
+
+// 1 , 4 , 3 , 2 
+
+// 4 first beacause promise has high priority
+
+
+// // -------------------Create you own promise class --------------------------------
+
+// // class TryInDeepPromise (resolve , reject){
+// //     function resolve(resolve){
+
+// //     }
+// //     function reject(resolve){
+
+// //     }
+// // }
+
+
+
+
