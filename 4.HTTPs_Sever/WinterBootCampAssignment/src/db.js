@@ -6,7 +6,7 @@ dotenv.config();
 
 const { Client } = pkg;
 
-const pgclient =  new Client ({
+export const pgclient =  new Client ({
     user : process.env.DB_USER,
     host : process.env.DB_HOST,
     database : process.env.DB_DATABASE,
