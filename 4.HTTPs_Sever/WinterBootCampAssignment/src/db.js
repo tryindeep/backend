@@ -16,9 +16,9 @@ const pgclient =  new Client ({
 
 const createTablesQuery = `
     CREATE TABLE IF NOT EXISTS users (
-        id                  SERIAL PRIMARY KEY,
+        id                   SERIAL PRIMARY KEY,
         username             TEXT    UNIQUE NOT NULL,
-        password            TEXT    NOT NULL         
+        password             TEXT    NOT NULL         
 
     );
     CREATE TABLE IF NOT EXISTS workspaces (
