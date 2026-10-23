@@ -1,11 +1,10 @@
 import { z } from "zod";
-import { id } from "./commont.validator.js"
 
+export const createTaskSchema = z.object({
+    title : z.string().min(1).max(100),
+    description : z.string(),
 
-export const taskSchema = z.object({
-    id,
-    title : z.string(),
-    description : z.string().nullable(),
-    completed : z.boolean(),
-    workspace_id : id.nullable(),
 })
+export const updateTaskSchema = z.object({
+    completed: z.boolean(),
+});
