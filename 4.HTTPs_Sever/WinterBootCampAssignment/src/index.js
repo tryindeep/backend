@@ -1,7 +1,9 @@
 import express from 'express'
 import { dbConnection } from './db.js';
+
 import { authRouter } from './routes/authRoutes.js';
 import { workspaceRouter } from './routes/workspaceRoutes.js';
+import { taskRouter } from './routes/taskRoutes.js';
 
 
 
@@ -13,8 +15,9 @@ app.use(express.json());
 
 
 //Routers
-app.use("/api/v1/auth" , authRouter);
-app.use("/api/v1/" , workspaceRouter);
+app.use("/api/v1/auth/" , authRouter);
+app.use("/api/v1/workspace" , workspaceRouter);
+app.use("/api/v1/task/", taskRouter)
 
 
 // Connecting with Db

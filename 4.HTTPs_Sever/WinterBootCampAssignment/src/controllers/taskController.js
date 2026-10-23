@@ -4,7 +4,7 @@ import { createTaskSchema, updateTaskSchema } from "../validators/task.validator
 export const taskController = {
     createTask : async (req , res) => {
         try {
-            const workspaceId = Number(req.params.workspaceId);
+            const workspaceId = Number(req.headers.workspaceid);
             if(!Number.isInteger(workspaceId)){
                 return res.status(400).json({message : "Invalid WorkspaceId"});
             }
@@ -50,7 +50,7 @@ export const taskController = {
             if(!Number.isInteger(taskId)) {
                 return res.status(400).json({ message: "Invalid TaskId" });
             }
-            const parsed = updateTaskSchema(req.body);
+            const parsed = updateTaskSchema.safeParse(req.body);
             if(!parsed.success) {
                 return res.status(400).json({
                     message: "Incorrect Format",

@@ -6,6 +6,6 @@ export const workspaceRouter = Router();
 
 workspaceRouter.use(authMiddleware)
 
-workspaceRouter.post("/workspace/create" , workspaceController.createWorkspace)
+workspaceRouter.post("/" , workspaceController.createWorkspace)
 workspaceRouter.get("/workspaces" , workspaceController.getAllWorkspace)
 workspaceRouter.delete("/workspaces/:workspaceId" , workspaceController.deleteWorkspaceById)

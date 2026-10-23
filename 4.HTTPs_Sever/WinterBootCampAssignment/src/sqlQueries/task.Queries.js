@@ -38,6 +38,14 @@ export const updateTaskCompleted = async (taskId , userId , completed) => {
     return result.rowCount; 
 }
 
-export const deleteTaskById = async() => {
-    
+export const deleteTaskById = async(taskId , userId ) => {
+    const result = await pgclient.query(
+        `
+        DELETE FROM tasks
+        WHERE id = $1
+            AND workspace_id IN (SELECT id FROM workspaces WHERE user_id = $2)
+        `,
+        [taskId , userId ]
+    );
+    return result.rowCount;
 }
