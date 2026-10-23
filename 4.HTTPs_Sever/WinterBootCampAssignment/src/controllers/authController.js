@@ -53,6 +53,7 @@ export const authController =
                         message: "Incorrect Format",
                         error: parsed.error
                     })
+                    
                 }
 
                 const { username, password } = parsed.data;

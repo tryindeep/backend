@@ -3,7 +3,7 @@ import { pgclient } from "../db.js"
 export const findUserByUsername = async(username) => {
     const result = await pgclient.query(
         
-        "SELECT username, password FROM users WHERE username=$1",
+        "SELECT id,username, password FROM users WHERE username=$1",
         [username]
     );
 
@@ -17,4 +17,13 @@ export const createUser = async(username , password) => {
     );
 
     return result.rows[0];
+}
+
+export const findUserById = async (id) => {
+    const result = await pgclient.query(
+        "SELECT id,username FROM users where id=$1",
+        [id]
+    );
+
+    return result.rows[0] || null;
 }

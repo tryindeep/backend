@@ -23,8 +23,8 @@ const createTablesQuery = `
     );
     CREATE TABLE IF NOT EXISTS workspaces (
         id                  SERIAL PRIMARY KEY,
-        name                TEXT    UNIQUE NOT NULL,
-        user_id             INTEGER REFERENCES users(id)  ON DELETE CASCADE      
+        name                TEXT   NOT NULL,
+        user_id             INTEGER REFERENCES users(id)  ON DELETE CASCADE  NOT NULL
 
     );
     CREATE TABLE IF NOT EXISTS tasks (
@@ -32,7 +32,7 @@ const createTablesQuery = `
         title               TEXT    NOT NULL,
         description         TEXT,
         completed           BOOLEAN DEFAULT false,
-        workspace_id        INTEGER REFERENCES workspaces(id)  ON DELETE CASCADE 
+        workspace_id        INTEGER REFERENCES workspaces(id)  ON DELETE CASCADE  NOT NULL
     );
 `;
 
