@@ -4,7 +4,6 @@ import { dbConnection } from './db.js';
 import { authRouter } from './routes/authRoutes.js';
 
 
-dotenv.config()
 
 const PORT = process.env.PORT || 3001;
 
@@ -18,7 +17,6 @@ app.use("/api/v1/auth" , authRouter);
 
 
 // Connecting with Db
-
 async function startServer(){
     try {
         app.listen(PORT, async () => {

@@ -1,8 +1,8 @@
-import bcryprt from "bcrypt";
-
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken"
 import { createUser, findUserByUsername } from "../sqlQueries/auth.Queries.js";
-import { signupSchema } from "../validators/user.validator.js";
-
+import { signinSchema, signupSchema } from "../validators/user.validator.js";
+import { JWT_AUTH_SECRET } from "../../config.js";
 
 
 export const authController =
@@ -30,7 +30,7 @@ export const authController =
             }
 
             // hashing password 
-            const hashedPassword = await bcryprt.hash(password,10);
+            const hashedPassword = await bcrypt.hash(password,10);
 
             await createUser(username, hashedPassword);
 
@@ -43,9 +43,47 @@ export const authController =
         }
     },
 
-    //signin
-    // signin : async (req , res) => {
-        
-    // }
+    // signin
+    signin : async (req , res) => {
+        try {
+             // validate input 
+            const parsed = signinSchema.safeParse(req.body);
+                if (!parsed.success) {
+                    return res.status(400).json({
+                        message: "Incorrect Format",
+                        error: parsed.error
+                    })
+                }
+
+                const { username, password } = parsed.data;
+
+                const foundUser = await findUserByUsername(username);
+
+                if(!foundUser){
+                    return res.status(403).json({
+                        message : "User Doesn't Exits, Please SignUp !!"
+                    })
+                }
+
+                const passwordMatched = await bcrypt.compare(password , foundUser.password);
+
+                if(passwordMatched) {
+                    const token = jwt.sign({id:foundUser.id} , JWT_AUTH_SECRET , {expiresIn: '2h'});
+
+                    return res.json({
+                        token : token
+                    })
+                }else {
+                    return res.status(403).json({
+                        message : "Incorrect Credentials"
+                    })
+                }
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({
+                message: "Internal Server Error"
+            });
+        }
+    }
 }
 
