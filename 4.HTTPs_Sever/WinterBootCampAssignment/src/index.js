@@ -1,7 +1,7 @@
 import express from 'express'
-import dotenv from 'dotenv'
 import { dbConnection } from './db.js';
 import { authRouter } from './routes/authRoutes.js';
+import { workspaceRouter } from './routes/workspaceRoutes.js';
 
 
 
@@ -14,6 +14,7 @@ app.use(express.json());
 
 //Routers
 app.use("/api/v1/auth" , authRouter);
+app.use("/api/v1/" , workspaceRouter);
 
 
 // Connecting with Db

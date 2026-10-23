@@ -1,7 +1,11 @@
 import { Router } from "express";
+import { workspaceController } from "../controllers/workspaceController.js";
+import { authMiddleware } from "../middlewares/authMiddleware.js";
 
-export const workSpaceRouter = Router();
+export const workspaceRouter = Router();
 
+workspaceRouter.use(authMiddleware)
 
-workSpaceRouter.post()
-
+workspaceRouter.post("/workspace/create" , workspaceController.createWorkspace)
+workspaceRouter.get("/workspaces" , workspaceController.getAllWorkspace)
+workspaceRouter.delete("/workspaces/:workspaceId" , workspaceController.deleteWorkspaceById)
